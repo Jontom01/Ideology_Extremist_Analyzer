@@ -1,4 +1,5 @@
 import pandas as pd
+import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, accuracy_score
@@ -9,8 +10,9 @@ print(df)
 
 # Map textual labels to binary labels: 0 for moderate, 1 for extreme.
 label_to_int = {
-    "ideologically_moderate": 0,
-    "ideologically_extreme": 1
+    "ideologically_mild": 0,
+    "ideologically_moderate": 1,
+    "ideologically_extreme": 2
 }
 df["label_encoded"] = df["label"].map(label_to_int)
 
@@ -43,3 +45,6 @@ accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
 print("\nClassification Report:")
 print(classification_report(y_test, y_pred))
+
+joblib.dump(model, "RFC_500rows_3label.pkl")
+print("Model saved as 'RFC_500rows_3label.pkl'.")

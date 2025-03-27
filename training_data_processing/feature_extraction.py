@@ -154,4 +154,4 @@ if __name__ == "__main__":
     l = [test_text, test_text2]
     fin = eval_features(l)
     print(fin)
-    dict_to_csv(fin)
+   # dict_to_csv(fin)

@@ -15,12 +15,12 @@ The first section of this program we will be looking at is that of the training_
 ----------------------------------------------------------------------------------------------------------------------------
 
 
-Obtain Online Messages -----> Extract Linguistic Features -----> Classify Ideological Extremity -----> Convert to CSV Output
+Obtain Messages -----> Extract Linguistic Features -----> Classify Ideological Extremity -----> Convert to CSV Output
 
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-Obtain Online Messages (scrape_reddit.py):
+Obtain Messages (scrape_reddit.py):
 In order to obtain the online messages required to train the data. I used Reddit API's PRAW module to hundreds of comments off of different posts and subreddits (some likely containing extreme comments and others more neutrally toned).
 
 Extract Linguistic Features (feature_extraction.py):
