@@ -1,14 +1,16 @@
 # Ideology_Extremist_Analyzer
 
-Description:
+**Description:**
 
-This project builds a supervised learning system designed to detect ideological extremity in online written communication—particularly from informal sources like Reddit. Instead of relying on political keywords or partisan alignment, the system focuses on how people express their beliefs, modeling psychological traits that research has strongly linked to ideological rigidity.
+This project aims to detect and classify ideological extremity in online discussions. It gathers text data from Reddit using the **Reddit API**, then applies ChatGPT (via **OpenAI’s API**) to extract psychologically grounded features (e.g., cognitive rigidity, emotional intensity, conspiratorial thinking). The resulting feature vectors are used to train a **Random Forest Classifier (RFC)**, a supervised learning model that predicts whether a given comment is ideologically moderate, intermediate, or extreme.
 
-Each message is scored across a set of psychologically grounded features, such as cognitive rigidity, external blame attribution, emotional intensity, moral absolutism, and conspiratorial thinking. These features are extracted using a language model (e.g., GPT-4o via ChatGPT API) via prompt-based analysis, then stored as structured numerical vectors for training. Labeled data is used to classify each message as either ideologically moderate or ideologically extreme based on aggregated feature scores.
+The training features chosen are based off of well-established research from political psychology, social cognition, and behavioral science. Decades of empirical studies have identified psychological traits that are strongly associated with ideological extremity, regardless of political orientation or topic domain. These traits form the basis of the linguistic features extracted from Reddit comments using ChatGPT API.
 
-The system supports flexible integration with Reddit scraping (via Reddit API using PRAW), data labeling, and CSV conversion modules, making it suitable for both exploratory research and production-scale classification tasks. By emphasizing psychological language patterns over surface-level political content, the model is designed to generalize across political, cultural, and identity-based ideological domains.
+Traits: Cognitive Rigidity, Group-Based Identity Fusion, Conspiratorial Mindset, Authoritarian Personality, Intolerance of Ambiguity, Moral Outrage, Emotional Intensity, Victimhood Narrative, Dogmatism, Social DominanceOrientation, Ideological Buzzword Usage.
 
-Software structure/architecture and details:
+All of these are captured through the features used to train the RFC.
+
+**Software structure/architecture and details:**
 
 The first section of this program we will be looking at is that of the training_data_processing. The integration of this section's modules follows a pipe-and-filter style architecture.
 
@@ -27,10 +29,12 @@ Extract Linguistic Features (feature_extraction.py):
 Now, once having a large list of messages, this module defines and extracts the features of each message. I used the model 4o ChatGPT API (along with a very lengthy and detailed prompt) in order to give each message accurate feature scores.
 
 Classify Ideological Extremity (classify.py):
-Based off a linear combination of the feature scores, each message is also given a binary label, of either "ideologically_extreme" or "ideologically_moderate".
+Based off a linear combination of the feature scores, each message is also given a binary label, of either "ideologically_extreme", "ideologically_moderate", "ideologically_mild".
 
 Convert to CSV Output (csv_processing.py):
 Finally, the list of messages (which are dicts with fields: text, features, label) with feature scores and labels are converted into a CSV file.
 
 
 NEXT MUST TALK ABOUT SECTION THAT HAS THE ACTUAL CLASSIFIER
+
+The 
