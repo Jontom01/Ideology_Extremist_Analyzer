@@ -29,7 +29,7 @@ Extract Linguistic Features (feature_extraction.py):
 Now, once having a large list of messages, this module defines and extracts the features of each message. I used the model 4o ChatGPT API (along with a very lengthy and detailed prompt) in order to give each message accurate feature scores.
 
 Classify Ideological Extremity (classify.py):
-Based off a linear combination of the feature scores, each message is also given a binary label, of either "ideologically_extreme", "ideologically_moderate", "ideologically_mild".
+Based off a linear combination of the feature scores, each message is also given a binary label, of either "ideologically_extreme", "ideologically_intermediate", "ideologically_mild", "ideologically_very_mild".
 
 Convert to CSV Output (csv_processing.py):
 Finally, the list of messages (which are dicts with fields: text, features, label) with feature scores and labels are converted into a CSV file.

@@ -5,10 +5,12 @@ def label_classification(d: dict) -> str:
     for feature in d['features'].values():
         score += w*feature
 
-    if score >= 0 and score < 0.4:
+    if score >= 0 and score < 0.2:
+        d['label'] = "ideologically_very_mild"
+    elif score >= 0.2 and score < 0.4:
         d['label'] = "ideologically_mild"
     elif score >= 0.4 and score < 0.6:
-        d['label'] = "ideologically_moderate"
+        d['label'] = "ideologically_intermediate"
     elif score >= 0.6 and score <= 1:
         d['label'] = "ideologically_extreme"
 

@@ -10,9 +10,10 @@ print(df)
 
 # Map textual labels to binary labels: 0 for moderate, 1 for extreme.
 label_to_int = {
-    "ideologically_mild": 0,
-    "ideologically_moderate": 1,
-    "ideologically_extreme": 2
+    "ideologically_very_mild": 0,
+    "ideologically_mild": 1,
+    "ideologically_intermediate": 2,
+    "ideologically_extreme": 3
 }
 df["label_encoded"] = df["label"].map(label_to_int)
 

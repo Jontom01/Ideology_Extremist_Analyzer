@@ -34,8 +34,12 @@ def scrape_subreddit(subreddit_names: list[str], limit: int = 10) -> tuple[list,
     return posts, comment_list
 
 if __name__ == "__main__":
-    subreddit_names = ["politics", "math", "LateStageCapitalism", "Socialism", "Fuckthealtright", "Conservative", "EnoughLibertarianSpam", "TrueOffMyChest", "TwoXChromosomes", "natureisbeautiful", "MachineLearning"]
-    posts, comments = scrape_subreddit(subreddit_names, limit=5)
+    subreddit_names = [
+        "Hobbies", "CasualConversation", "Vegan", "MensRights", "NeutralPolitics", 
+    "LateStageCapitalism", "FemaleDatingStrategy", "Conservative", "EnoughLibertarianSpam", 
+    "TrueOffMyChest", "TwoXChromosomes", "natureisbeautiful", "ChangeMyView", "politics", "askFeminists"
+    ]    
+    posts, comments = scrape_subreddit(subreddit_names, limit=2)
 
     for post in posts:
         print(post)

@@ -9,7 +9,7 @@ This file puts it all together and ultimately creates the training data.
 
 if __name__ == "__main__":
     subreddit_names = [
-        "Hobbies", "CasualConversation", "Vegan", "MensRights", "TheRedPill", "NeutralPolitics", 
+        "Hobbies", "CasualConversation", "Vegan", "MensRights", "NeutralPolitics", 
     "LateStageCapitalism", "FemaleDatingStrategy", "Conservative", "EnoughLibertarianSpam", 
     "TrueOffMyChest", "TwoXChromosomes", "natureisbeautiful", "ChangeMyView", "politics", "askFeminists"
     ]
