@@ -3,8 +3,11 @@ from feature_extraction import eval_features
 from reddit_scraper import scrape_subreddit
 from csv_processing import dict_to_csv
 
+"""
+This file puts it all together and ultimately creates the training data.
+"""
+
 if __name__ == "__main__":
-    # Example: input text. In practice, you might loop over a dataset.
     subreddit_names = [
         "Hobbies", "CasualConversation", "Vegan", "MensRights", "TheRedPill", "NeutralPolitics", 
     "LateStageCapitalism", "FemaleDatingStrategy", "Conservative", "EnoughLibertarianSpam", 

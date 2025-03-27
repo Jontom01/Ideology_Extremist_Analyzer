@@ -117,7 +117,7 @@ def extract_features(text: str) -> dict:
         )
         reply_text = response.choices[0].message.content.strip() #"  {'text': 'blah'}\n\n".strip()  # → "{'text': 'blah'}"
 
-        # Safely parse the returned string as a Python dictionary
+        #Safely parse the returned string as a Python dictionary
         try:
             features = ast.literal_eval(reply_text) 
             """
@@ -147,7 +147,7 @@ def eval_features(text_list: list[str]) -> dict:
             features_dict_list.append(tmp) #the if statement is because the dict_to_csv function will throw an error if it gets an unexpected dict format.
     return features_dict_list
 
-# Example usage (for testing):
+
 if __name__ == "__main__":
     test_text = "The system is rigged and anyone who disagrees is clearly brainwashed."
     test_text2 = "I really am not sure if i like honey or not. Stupid thing to ask but I really don't like the taste myself, despite other people thinking it is yummy."

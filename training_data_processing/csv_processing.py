@@ -9,11 +9,11 @@ def dict_to_csv(features_dict_list: list[dict]):
             'text': item['text'],
             'label': item['label']
         }
-        row.update(item['features'])  # merges all features into the row
+        row.update(item['features'])  #merges all features into the row
         flattened_data.append(row)
 
-    # Convert to a DataFrame
+    #Convert to a DataFrame
     df = pd.DataFrame(flattened_data)
 
-    # Save to CSV
+    #Save to CSV
     df.to_csv("ideology_data.csv", index=False)

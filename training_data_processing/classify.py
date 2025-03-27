@@ -14,7 +14,6 @@ def label_classification(d: dict) -> str:
 
     return d
 
-# Example usage (for testing):
 if __name__ == "__main__":
     test_features =  {
             'text': "The original Reddit message or comment here.",

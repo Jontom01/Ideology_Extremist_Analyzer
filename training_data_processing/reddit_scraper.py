@@ -1,6 +1,6 @@
 # data/scrape_reddit.py
 import praw
-
+from config import REDDIT_CLIENT_SECRET, REDDIT_CLIENT_ID, REDDIT_USER_AGENT
 def scrape_subreddit(subreddit_names: list[str], limit: int = 10) -> tuple[list, list]:
     """
     Scrapes posts from a specified subreddit.
@@ -13,14 +13,13 @@ def scrape_subreddit(subreddit_names: list[str], limit: int = 10) -> tuple[list,
         List of dictionaries, each containing the title and selftext of a post.
     """
     reddit = praw.Reddit(
-        client_id="fN_goZykLxW_PDKuvl2JPQ",         # Replace with your client_id
-        client_secret="ZXGVrup4DcihG1wERmEPnAQ7E7BtOA", # Replace with your client_secret
-        user_agent="Ideology_WS/0.1 by That_Reserve_4864"  # Customize your user_agent
+        client_id=REDDIT_CLIENT_ID,        
+        client_secret=REDDIT_CLIENT_SECRET,
+        user_agent=REDDIT_USER_AGENT
     )
     posts = []
     comment_list = []
     for subreddit_name in subreddit_names:
-        #print(subreddit_name)
         subredditVar = reddit.subreddit(subreddit_name)
         for submission in subredditVar.hot(limit=limit): #get submission objects from subreddit object
             posts.append(submission.title)
@@ -31,14 +30,10 @@ def scrape_subreddit(subreddit_names: list[str], limit: int = 10) -> tuple[list,
             else:
                 for i in range(1,10):
                     comment_list.append(comments_in_post[i].body)
-            #posts.append({
-        #      "title": submission.title,
-        #      "selftext": submission.selftext
-        #  })
+
     return posts, comment_list
 
 if __name__ == "__main__":
-    # Example usage: scrape 5 posts from r/politics
     subreddit_names = ["politics", "math", "LateStageCapitalism", "Socialism", "Fuckthealtright", "Conservative", "EnoughLibertarianSpam", "TrueOffMyChest", "TwoXChromosomes", "natureisbeautiful", "MachineLearning"]
     posts, comments = scrape_subreddit(subreddit_names, limit=5)
 
