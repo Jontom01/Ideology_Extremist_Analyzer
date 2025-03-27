@@ -10,37 +10,26 @@ The system supports flexible integration with Reddit scraping (via Reddit API us
 
 Software structure/architecture and details:
 
-The first section of this program we will be looking at is that of the training_data_processing. The integration of this section's modules follows a pipe-and-filter style architecture. 
+The first section of this program we will be looking at is that of the training_data_processing. The integration of this section's modules follows a pipe-and-filter style architecture.
 
-+-----------------------------+            
-|     Obtain Online Messages  |  ----->    scrape_reddit.py    
-+-----------------------------+           
-                |
-                v
-+-----------------------------+           
-| Extract Linguistic Features |  ----->    feature_extraction.py      
-+-----------------------------+           
-                |
-                v
-+-------------------------------+          
-| Classify Ideological Extremity|  ----->  label_classification.py      
-+-------------------------------+          
-                |
-                v
-+-------------------------+                
-|  Convert to CSV Output  |  --------->    csv_processing.py
-+-------------------------+             
+----------------------------------------------------------------------------------------------------------------------------
 
-Obtain Online Messages:
+
+Obtain Online Messages -----> Extract Linguistic Features -----> Classify Ideological Extremity -----> Convert to CSV Output
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Obtain Online Messages (scrape_reddit.py):
 In order to obtain the online messages required to train the data. I used Reddit API's PRAW module to hundreds of comments off of different posts and subreddits (some likely containing extreme comments and others more neutrally toned).
 
-Extract Linguistic Features:
+Extract Linguistic Features (feature_extraction.py):
 Now, once having a large list of messages, this module defines and extracts the features of each message. I used the model 4o ChatGPT API (along with a very lengthy and detailed prompt) in order to give each message accurate feature scores.
 
-Classify Ideological Extremity:
+Classify Ideological Extremity (classify.py):
 Based off a linear combination of the feature scores, each message is also given a binary label, of either "ideologically_extreme" or "ideologically_moderate".
 
-Convert to CSV Output:
+Convert to CSV Output (csv_processing.py):
 Finally, the list of messages (which are dicts with fields: text, features, label) with feature scores and labels are converted into a CSV file.
 
 
