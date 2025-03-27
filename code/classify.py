@@ -1,5 +1,14 @@
 # classifier/classify.py
-
+def label_classification(d: dict) -> str:
+    w = 1/7 #weight
+    score = 0
+    for feature in d['features'].values():
+        score += w*feature
+    if score < 0.6: 
+        d['label'] = "ideologically_moderate"
+    else:
+        d['label'] = "ideologically_extreme"
+    return d
 def classify_features(features: dict) -> str:
     """
     Given a dictionary of feature scores, return a label:
@@ -35,13 +44,17 @@ def classify_features(features: dict) -> str:
 
 # Example usage (for testing):
 if __name__ == "__main__":
-    test_features = {
-        "certainty_score": 0.95,
-        "external_blame_score": 0.9,
-        "condescension_score": 0.85,
-        "nuance_score": 0.2,
-        "buzzword_density": 0.8,
-        "agreeability_score": 0.3
+    test_features =  {
+            'text': "The original Reddit message or comment here.",
+            'features': {
+                'cognitive_rigid_score': 0.8,
+                'external_blame_score': 0.6,
+                'social_hostility_score': 0.6,
+                'buzzword_density': 0.7,
+                'emotional_intensity': 0.8,
+                'identity_fusion_score': 0.3,
+                'conspiratorial_thinking_score': 0.6
+            }
     }
-    label = classify_features(test_features)
-    print("Label:", label)
+    label = label_classification(test_features)
+    print(label)

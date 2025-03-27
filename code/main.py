@@ -15,8 +15,8 @@ def process_text(text: str):
 
 if __name__ == "__main__":
     # Example: input text. In practice, you might loop over a dataset.
-    subreddit_names = ["politics", "math", "LateStageCapitalism", "Socialism", "Fuckthealtright", "Conservative", "EnoughLibertarianSpam", "TrueOffMyChest", "TwoXChromosomes", "natureisbeautiful", "MachineLearning"]
-    posts, comments = scrape_subreddit(subreddit_names, limit=5)
+    subreddit_names = ["politics", "NeutralPolitics", "LateStageCapitalism", "FemaleDatingStrategy", "askFeminists", "Conservative", "EnoughLibertarianSpam", "TrueOffMyChest", "TwoXChromosomes", "natureisbeautiful", "ChangeMyView"]
+    posts, comments = scrape_subreddit(subreddit_names, limit=7)
     features_dict_list = eval_features(comments)
     dict_to_csv(features_dict_list)
     #i = 0

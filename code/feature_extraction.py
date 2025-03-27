@@ -4,6 +4,7 @@ import ast
 from config import OPENAI_API_KEY
 import pandas as pd
 from csv_processing import dict_to_csv
+from classify import label_classification
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 
@@ -141,7 +142,9 @@ def eval_features(text_list: list[str]) -> dict:
     features_dict_list = []
     for msg in text_list:
         tmp = extract_features(msg)
-        if tmp != {}: features_dict_list.append(tmp)
+        if tmp != {}: 
+            tmp = label_classification(tmp)
+            features_dict_list.append(tmp) #the if statement is because the dict_to_csv function will throw an error if it gets an unexpected dict format.
     return features_dict_list
 
 # Example usage (for testing):
