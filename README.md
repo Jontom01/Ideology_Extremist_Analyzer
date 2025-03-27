@@ -12,6 +12,8 @@ All of these are captured through the features used to train the RFC.
 
 **Software structure/architecture and details:**
 
+**Training Data Processing:**
+
 The first section of this program we will be looking at is that of the training_data_processing. The integration of this section's modules follows a pipe-and-filter style architecture.
 
 ----------------------------------------------------------------------------------------------------------------------------
@@ -22,19 +24,26 @@ Obtain Messages -----> Extract Linguistic Features -----> Classify Ideological E
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-Obtain Messages (scrape_reddit.py):
+Obtain Messages (*scrape_reddit.py*):
 In order to obtain the online messages required to train the data. I used Reddit API's PRAW module to hundreds of comments off of different posts and subreddits (some likely containing extreme comments and others more neutrally toned).
 
-Extract Linguistic Features (feature_extraction.py):
+Extract Linguistic Features (*feature_extraction.py*):
 Now, once having a large list of messages, this module defines and extracts the features of each message. I used the model 4o ChatGPT API (along with a very lengthy and detailed prompt) in order to give each message accurate feature scores.
 
-Classify Ideological Extremity (classify.py):
+Classify Ideological Extremity (*classify.py*):
 Based off a linear combination of the feature scores, each message is also given a binary label, of either "ideologically_extreme", "ideologically_intermediate", "ideologically_mild", "ideologically_very_mild".
 
-Convert to CSV Output (csv_processing.py):
+Convert to CSV Output (*csv_processing.py*):
 Finally, the list of messages (which are dicts with fields: text, features, label) with feature scores and labels are converted into a CSV file.
 
+**Model Training:**
 
-NEXT MUST TALK ABOUT SECTION THAT HAS THE ACTUAL CLASSIFIER
+The next section focuses on training a supervised learning model using the processed training data. Specifically, a Random Forest Classifier is implemented using scikit-learn to learn patterns from the extracted linguistic features and accurately predict ideological extremity.
 
-The 
+*not done*
+
+**Use Cases and Hypothesis Testing:**
+
+With the trained model, we can now explore real-world applications and research hypotheses. One such use case involves identifying behavioral and profile-level commonalities among ideologically extreme users. After detecting high-extremity comments, we can analyze the Reddit profiles of those users to examine patterns in their subreddit activity, post history, or engagement style. This may reveal shared traits, such as participation in ideologically similar communities, low subreddit diversity, or consistent engagement with controversial topics, which can offer deeper insight into the online behavioral landscape of ideological extremity.
+
+*not done*

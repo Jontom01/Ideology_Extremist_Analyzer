@@ -4,11 +4,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, accuracy_score
 
-# Load your dataset
+#Load your dataset
 df = pd.read_csv("ideology_data.csv")
 print(df)
 
-# Map textual labels to binary labels: 0 for moderate, 1 for extreme.
+#Map textual labels to binary labels: 0 for moderate, 1 for extreme.
 label_to_int = {
     "ideologically_very_mild": 0,
     "ideologically_mild": 1,
@@ -17,7 +17,7 @@ label_to_int = {
 }
 df["label_encoded"] = df["label"].map(label_to_int)
 
-# Define your feature columns
+#Define your feature columns
 features = [
     "cognitive_rigid_score",
     "external_blame_score",
@@ -31,17 +31,17 @@ features = [
 X = df[features]
 y = df["label_encoded"]
 
-# Split the data into training and testing sets
+#Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Initialize and train the RandomForestClassifier
+#Initialize and train the RandomForestClassifier
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 
-# Make predictions on the test set
+#Make predictions on the test set
 y_pred = model.predict(X_test)
 
-# Evaluate model performance
+#Evaluate model performance
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
 print("\nClassification Report:")
