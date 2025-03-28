@@ -7,6 +7,8 @@ def dict_to_csv(features_dict_list: list[dict]):
     for item in features_dict_list:
         row = {
             'text': item['text'],
+            'subreddit': item['subreddit'],
+            'utc_time': item['utc_time'],
             'label': item['label']
         }
         row.update(item['features'])  #merges all features into the row

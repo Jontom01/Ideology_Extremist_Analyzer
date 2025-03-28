@@ -15,8 +15,6 @@ def extract_features(text: str) -> dict:
       - cognitive_rigid_score
       - external_blame_score
       - social_hostility_score
-      - buzzword_density
-      - identity_fusion_score
       - emotional_intensity
       - conspiratorial_thinking_score
     Plus any other relevant keys you wish to include.
@@ -24,7 +22,7 @@ def extract_features(text: str) -> dict:
     system_prompt = """You are a professional language analysis model trained in political psychology, ideological extremism, and behavioral linguistics. Your task is to analyze informal online communication (such as Reddit comments or posts) and score the presence of psychological traits that correlate with ideological extremity.
             You must return a valid Python dictionary with two keys:
             1. 'text' the original input message
-            2. 'features' a dictionary of 7 float scores (0.0 to 1.0), each measuring a specific psychological/linguistic trait
+            2. 'features' a dictionary of 5 float scores (0.0 to 1.0), each measuring a specific psychological/linguistic trait
 
             ---
 
@@ -38,7 +36,7 @@ def extract_features(text: str) -> dict:
 
             - **Group-Based Identity Fusion & In-group Bias**  
             Merging of self and group identity; views outsiders as threats.  
-            ↳ Related to: *identity_fusion_score, external_blame_score*
+            ↳ Related to: *external_blame_score*
 
             - **Conspiratorial Mindset**  
             Distrust of mainstream sources; belief in hidden agendas.  
@@ -66,11 +64,8 @@ def extract_features(text: str) -> dict:
 
             - **Social Dominance Orientation (SDO)**  
             Desire for dominance of one's group over others.  
-            ↳ Related to: *social_hostility_score, identity_fusion_score*
+            ↳ Related to: *social_hostility_score*
 
-            - **Ideological Buzzword Use (Signaling/Tribalism)**  
-            Frequent use of politically charged terminology as a marker of ideological belonging.  
-            ↳ Related to: *buzzword_density*
 
             ---
 
@@ -79,9 +74,7 @@ def extract_features(text: str) -> dict:
             Return float values between 0.0 and 1.0 for each of these features:
             - **cognitive_rigid_score: Measures rigidity, absolutism, simplistic thinking, intolerance of ambiguity
             - **external_blame_score**: How much the speaker blames outside groups, systems, or others. Potentially has victim-mindset.
-            - **buzzword_density**: Frequency of ideological or tribal buzzwords ("woke", "deep state", etc.).
             - **emotional_intensity**: High emotional charge (anger, outrage, disgust).
-            - **identity_fusion_score**: Alignment between self and a group identity (“we,” “our movement”).
             - **conspiratorial_thinking_score**: Suspicion of hidden agendas or manipulation.
             - **social_hostility_score**: Hostility, aggression, condescension, dismissiveness, mockery, superiority, towards opponents.
 
@@ -97,9 +90,7 @@ def extract_features(text: str) -> dict:
                 'cognitive_rigid_score': 0.8,
                 'external_blame_score': 0.6,
                 'social_hostility_score': 0.6,
-                'buzzword_density': 0.7,
                 'emotional_intensity': 0.8,
-                'identity_fusion_score': 0.3,
                 'conspiratorial_thinking_score': 0.6
             }
             }
@@ -138,20 +129,24 @@ def extract_features(text: str) -> dict:
         print("Error during feature extraction:", e)
         return {}
 
-def eval_features(text_list: list[str]) -> dict:
+def eval_features(text_list: list[dict]) -> dict:
     features_dict_list = []
-    for msg in text_list:
-        tmp = extract_features(msg)
+    for msg_dict in text_list:
+        tmp = extract_features(msg_dict['comment'])
         if tmp != {}: 
             tmp = label_classification(tmp)
+            tmp['subreddit'] = msg_dict['subreddit']
+            tmp['utc_time'] = msg_dict['utc_time']
             features_dict_list.append(tmp) #the if statement is because the dict_to_csv function will throw an error if it gets an unexpected dict format.
     return features_dict_list
 
 
 if __name__ == "__main__":
-    test_text = "The system is rigged and anyone who disagrees is clearly brainwashed."
-    test_text2 = "I really am not sure if i like honey or not. Stupid thing to ask but I really don't like the taste myself, despite other people thinking it is yummy."
+    test_text = {'comment': 'I am a little bit guilty of posting a not so personal things but I think at this point, you guys are doing the right thing.', 'subreddit': 'TrueOffMyChest', 'utc_time': 1615763367.0}
+    test_text2 = {'comment': 'how soon before you mods are gonna burn out?', 'subreddit': 'TrueOffMyChest', 'utc_time': 1615763367.0}
     l = [test_text, test_text2]
     fin = eval_features(l)
-    print(fin)
+    for item in fin:
+        print(item)
+        print('\n')
    # dict_to_csv(fin)

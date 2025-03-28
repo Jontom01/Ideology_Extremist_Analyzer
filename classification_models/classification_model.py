@@ -22,9 +22,7 @@ features = [
     "cognitive_rigid_score",
     "external_blame_score",
     "social_hostility_score",
-    "buzzword_density",
     "emotional_intensity",
-    "identity_fusion_score",
     "conspiratorial_thinking_score"
 ]
 
@@ -47,5 +45,7 @@ print("Accuracy:", accuracy)
 print("\nClassification Report:")
 print(classification_report(y_test, y_pred))
 
-joblib.dump(model, "RFC_500rows_3label.pkl")
-print("Model saved as 'RFC_500rows_3label.pkl'.")
+#joblib.dump(model, "RFC_500rows_3label.pkl")
+#print("Model saved as 'RFC_500rows_3label.pkl'.")
+print("\n")
+print(model.feature_importances_)

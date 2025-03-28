@@ -13,6 +13,6 @@ if __name__ == "__main__":
     "LateStageCapitalism", "FemaleDatingStrategy", "Conservative", "EnoughLibertarianSpam", 
     "TrueOffMyChest", "TwoXChromosomes", "natureisbeautiful", "ChangeMyView", "politics", "askFeminists"
     ]
-    posts, comments = scrape_subreddit(subreddit_names, limit=10)
+    posts, comments = scrape_subreddit(subreddit_names, limit=1)
     features_dict_list = eval_features(comments)
     dict_to_csv(features_dict_list)

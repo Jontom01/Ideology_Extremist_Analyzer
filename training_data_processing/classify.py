@@ -1,6 +1,6 @@
 # classifier/classify.py
 def label_classification(d: dict) -> str:
-    w = 1/7 #weight
+    w = 1/5 #weight
     score = 0
     for feature in d['features'].values():
         score += w*feature
@@ -23,9 +23,7 @@ if __name__ == "__main__":
                 'cognitive_rigid_score': 0.8,
                 'external_blame_score': 0.6,
                 'social_hostility_score': 0.6,
-                'buzzword_density': 0.7,
                 'emotional_intensity': 0.8,
-                'identity_fusion_score': 0.3,
                 'conspiratorial_thinking_score': 0.6
             }
     }
