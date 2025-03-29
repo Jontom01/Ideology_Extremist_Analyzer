@@ -8,8 +8,6 @@ The features chosen are based off of well-established research from political ps
 
 Traits being captured: Cognitive Rigidity, Group-Based Identity Fusion, Conspiratorial Mindset, Authoritarian Personality, Emotional Intensity, Victimhood Narrative, Dogmatism, Social Dominance Orientation.
 
-All of these are captured through the features used to train the RFC.
-
 **Software structure/architecture and details:**
 
 **Training Data Processing:**
@@ -19,7 +17,7 @@ The first section of this program we will be looking at is that of the training_
 ----------------------------------------------------------------------------------------------------------------------------
 
 
-**Obtain Messages -----> Extract Linguistic Features -----> Classify Ideological Extremity -----> Convert to CSV Output**
+Obtain Messages -----> Extract Linguistic Features -----> Classify Ideological Extremity -----> Convert to CSV Output
 
 
 ----------------------------------------------------------------------------------------------------------------------------
