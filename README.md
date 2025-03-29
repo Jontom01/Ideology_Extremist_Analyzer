@@ -2,7 +2,7 @@
 
 **Description:**
 
-This project detects and analyzes ideological extremity in online discussions. It gathers conversational data from Reddit using the **Reddit API**, then applies ChatGPT (**via OpenAI’s API**) to extract psychologically grounded behavioural traits through these messages (such as cognitive rigidity, dogmatism, and conspiratorial thinking). These extracted features are used to build a structured dataset that includes each message, its psychological features, the originating subreddit, and a timestamp. This dataset enables detailed analysis of ideological extremity trends across communities, individuals, and time periods.
+This project detects and analyzes ideological extremity in online discussions. It gathers conversational data from Reddit using the **Reddit API**, then applies ChatGPT (**via OpenAI’s API**) to extract psychologically grounded behavioural traits from these messages (such as cognitive rigidity, dogmatism, and conspiratorial thinking). These extracted features are used to build a structured dataset that includes each message, its psychological features, the originating subreddit, and a timestamp. This dataset enables detailed analysis of ideological extremity trends across communities, individuals, and time periods.
 
 The features chosen are based off of well-established research from political psychology, social cognition, and behavioral science. Decades of empirical studies have identified psychological traits that are strongly associated with ideological extremity, regardless of political orientation or topic domain. These traits form the basis of the linguistic features extracted from Reddit comments using ChatGPT API.
 
